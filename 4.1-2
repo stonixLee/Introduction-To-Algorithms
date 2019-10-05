@@ -1,0 +1,36 @@
+#include "pch.h"
+#include<iostream>
+#include <memory>
+using	namespace std;
+void FindMaxSubArray(int A[])
+{
+	int max = -65532;
+	int sum = 0, Low, High;
+	for (int i = 0; i < 16; i++)
+	{
+		int low = i;
+		sum = 0;
+		for (int j = 1; j < 16; j++)
+		{
+			if (low < j) {
+				sum += A[low];
+				low++;
+			}
+			if (max < sum)
+			{
+				max = sum;
+				Low = i; High = j;
+			}
+		}
+
+	}
+	cout << "max=" << max << endl;
+	cout << "Low=" << Low << endl;
+	cout << "High=" << High << endl;
+}
+int main() {
+	{
+		int A[16] = { 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7 };
+		FindMaxSubArray(A);
+	}
+}
